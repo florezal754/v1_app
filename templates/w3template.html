@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- Add the Plotly Script Scource in html head tag-->
+<script src="https://cdn.plot.ly/plotly-latest.min.js" ></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Add a gray background color with some padding */
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 75%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding-left: 20px;
+}
+
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Add a card effect for articles */
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
+
+/*Download button*/
+.btn {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  /* Darker background on mouse-over */
+  .btn:hover {
+    background-color: lightgrey;
+  }
+
+  /*div button*/
+  .btndiv {
+    background-color: white;
+    width: 100%;
+    padding: 20px;
+  }
+
+/*link*/
+a:link {
+    text-decoration: none;
+    color:white;
+  }
+
+  a:visited {
+    text-decoration: underline;
+  }
+
+a.email {
+    color:blue;
+    text-decoration: underline;
+
+}
+
+/*changer to full screen*/
+#changer  {
+    background-image:none;
+    background-position:left top fixed;
+    background-size: cover; 
+    position: inherit;
+    z-index: -9999999999; 
+    opacity: 1; 
+    -webkit-transition:all 0.6s;
+    -moz-transition:all 0.6s; 
+    -ms-transition:all 0.6s; 
+    -o-transition:all 0.6s;  
+    transition:all 0.6s; 
+}   
+
+#changer:hover   { 
+    top: 0px; 
+    left: 0px;
+    height: 100%; 
+    width: 100%; 
+    position: sticky;
+    z-index: 1; 
+ }
+
+ #zoom {
+  padding: 0px;
+  background-color: green;
+  transition: transform .2s; /* Animation */
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+#zoom:hover {
+  transform: scale(5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h2>2022 MEF FORECAST PROJECT</h2>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <h2>MODULATION SIGNALS</h2>
+      <h5>Day-ahead Signals: AEF, APEF, MEF, MPEF, RES</h5>
+      <div id="chart2">
+      
+        <script type="text/javascript">
+            var graphs2;
+            var graphs2 = {{ chart_for_html_other | safe }}; 
+            var graphs2=JSON.parse(graphs2);
+            console.log('a ver')
+            var config2 ={displayModeBar: false,showTips: false,responsive:true};
+            Plotly.plot('chart2',graphs2.data,graphs2.layout,config2);
+        </script>
+    
+    </div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+
+    <div class="card">
+      <h2>INPUT DATA FORECASTS</h2>
+      <h5></h5>
+      <!--<div class="fakeimg" style="height:200px;">Image</div>-->
+      <!--This is HTML and JS Combo to render the chart in the front-end-->>
+      <div class="container" id="chart1" style="margin:0 auto;align-items: center; justify-content: center; ">
+      
+        <script type="text/javascript">
+            var graphs;
+            var graphs = {{ chart_for_html | safe }}; 
+            var graphs=JSON.parse(graphs);
+            // console.log()
+            var config ={displayModeBar: false,showTips: false,responsive:true};
+            Plotly.plot('chart1',graphs.data,graphs.layout,config);
+        </script>
+    
+    </div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+
+    <div class="card">
+      <h2>HISTORICAL DATA</h2>
+      <h5>Display data from the past</h5>
+
+      <!--<h6>Implement a time controller</h6>
+      <p>Data available</p>-->
+      <div id="w">
+        <p>Input data to submit, example:     <br>
+          2022-06-01 22:00:00+00:00</p>
+        <input class="inputPanel" type="text" id="start_date" name="start_date"  data-linked="true" value="2022-06-01 22:00:00+00:00"/>
+        <input class="inputPanel" type="text" id="end_date" name="end_date"  data-linked="true" value="2022-06-01 23:00:00+00:00"/>
+        <br>
+        <button type='button' id='submit'>Submit</button>
+        <div id="messagedisplay">
+
+          <script>
+            // Script json 
+            $(document).ready(function() {
+              $('#submit').click(function(){
+                console.log('clicked submit')
+                var start_date = $('#start_date').val();
+                var end_date = $('#end_date').val();
+                $.ajax({
+                 url: "/response",
+                 type: "get",
+                 data: {start_date: start_date, end_date:end_date},
+                 success: function(json) {
+                    $('#messagedisplay').html("The signals for the date selected are: " + json);
+                    console.log("success", JSON.parse(json));
+                    console.log("success", json.graphArray);
+
+                },
+                 error: function(xhr) {
+                   //Do Something to handle error
+               }
+             });
+             });
+            });
+        </script>        
+
+        </div>
+      </div>
+      <br>
+      <br>
+      <p>
+       Temporal scope from January 1st, 2016 to 31st December, 2021.</p>
+    </div>
+  </div>
+
+  <div class="rightcolumn">
+    <div class="card">
+      <h2>Acknowledgments</h2>
+      <!--<div class="fakeimg" style="height:100px;">Image</div>-->
+      <p>The research conducted is performed in the framework of the project “2020PANDE00116 - <a href="https://www.irec.cat/research/projects/commit20/">ComMit-20</a> Designing Resilient Communities to Mitigate Pandemic and Climate Change effects”, funded by the AGAUR (Agència de Gestió d’Ajust Universitaris i de Recerca). 
+    </p>    
+
+    </div>
+    <div class="card">
+      <h3>Conversion factors</h3>
+      <div class="btndiv"><button class="btn"><a href="CF.csv" download="CF.csv"><i class="material-icons">archive</i>.csv</a></button></div><br>
+        <div class="fakeimg">Zoom in for preview
+                <img class="fakeimg" id="zoom" src="/static/table.png"/>
+      </div><br>
+      <!--<div class="fakeimg">Image</div><br>-->
+      <!--<div class="fakeimg">Image</div>-->
+    </div>
+    <div class="card">
+      <h3>Contact</h3>
+      <address>
+        <a class="email" href="mailto:florezal754@gmail.com">Email us</a><br> <br>
+        Visit us at: <a href="https://www.irec.cat">irec.cat</a><br><br>
+        1 IREC – Catalonia Energy Research Institute 
+        Jardins de les Dones de Negre 1, 2ª pl. 
+        08930 Sant Adrià del Besòs
+        <br>
+        Barcelona, Spain
+        </address>
+    </div>
+    <div class="card">
+      <h3>Related group publications</h3>
+      <address>
+        <a href="https://www.researchgate.net/publication/328314917_Environmental_and_Economic_Impact_of_Demand_Response_Strategies_for_Energy_Flexible_Buildings">Environmental and Economic Impact of Demand Response Strategies for Energy Flexible Buildings
+        </a>
+        <br> <br>
+        <a href="http://dspace.aeipro.com/xmlui/handle/123456789/3090">Marginal grid emissions and primary energy to activate demand side management: COVID19 case study</a>
+        <br> <br>
+        <a href="https://www.sciencedirect.com/science/article/pii/S0360132322006928">Ten questions concerning energy flexibility in buildings</a>
+        <br><br>
+        <a href="https://www.irec.cat/research/group/thermal-energy-and-building-performance/">Thermal energy and building performance at IREC</a><br>
+        <br>
+        </address>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>Copyright © 2022 Institut de Recerca en Energia de Catalunya. All Rights Reserved.
+</h2>
+</div>
+<!--<script src="app.js"></script>-->
+
+
+<script>
+  // Example object with ajax method
+var Example = (function () {
+  // ctor
+  function self() { }
+
+  // Ajax request method
+  //self.Request = function (params) {
+  //    $.ajax({
+  //      dataType: params.datatype || "json",
+  //        type: params.verb || 'GET',
+  //        contentType: params.contentType || "application/json",
+  //        data: params.data || {start_date: start_date, end_date:end_date},
+  //        async: params.async || true,
+  //        processData: params.processData || true,
+  //        url: params.url || '/response',
+  //        error: function (xhr, textStatus, errorThrown) {
+  //            params.error(xhr, textStatus, errorThrown);
+  //        },
+  //        success: function (data, textStatus, xhr) {
+  //            params.success(data);
+  //        }
+  //    });
+
+  //};
+
+  // Return object
+  //return self;
+
+//})($);
+</script>
+
+</body>
+</html>

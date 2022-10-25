@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <!-- Add the Plotly Script Scource in html head tag-->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js" ></script>
+
+</head>
+<body>
+    <!-- Render the JSON as Chart on the Frontend using Plotly Java Script Module.-->
+
+    <!--This is HTML and JS Combo to render the chart in the front-end-->>
+    <div class="container" id="chart1" style="margin:0 auto;align-items: center; justify-content: center; ">
+    
+        <script type="text/javascript">
+            var graphs;
+            var graphs = {{ chart_for_html | safe }}; 
+            var graphs=JSON.parse(graphs);
+    
+            // console.log()
+    
+            var config ={displayModeBar: false,showTips: false,responsive:true};
+    
+            Plotly.plot('chart1',graphs.data,graphs.layout,config);
+    
+        </script>
+    
+    </div>
+</body>
+</html>
