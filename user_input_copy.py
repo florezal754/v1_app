@@ -17,9 +17,9 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 
 #ask for int user input
-@app.route('/')
-def hello():
-    return 'hello'
+@app.route("/")
+def home():
+	return "hellow!"
 -----
 #conding the form in the flask file
 #@app.route('/form')
