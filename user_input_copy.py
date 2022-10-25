@@ -85,12 +85,12 @@ def my_plot_full_bar(dataframe):
 
 
 #pass the JSON object as the input of the render template function
-@app.route('/', methods=['GET', 'POST'])
-def home():
+#@app.route('/', methods=['GET', 'POST'])
+#def home():
     #import chart as JSON object
-    chart_from_python=my_plot(ps, ps.Biomasa)
+#    chart_from_python=my_plot(ps, ps.Biomasa)
     #pass the JSON Chart object into the frontend
-    return render_template("sample_page.html", chart_for_html=chart_from_python)
+#    return render_template("sample_page.html", chart_for_html=chart_from_python)
 
 Dataset = pd.read_csv('penalty_signals.csv', encoding="UTF-8")
 
