@@ -2,6 +2,11 @@
 from flask import Flask, jsonify, render_template, request as req
 #flask provides with jsonify function to convert lists and dict to JSON 
 #from flask_cors import CORS
+import json 
+import pandas as pd
+import plotly
+import plotly.graph_objects as go
+import plotly.express as px
 
 #creates the Flask app object, contains data about the app and methods (object functions)
 #functions tell the app to do certain actions
@@ -11,31 +16,24 @@ app = Flask(__name__)
 #starts the debugger -- if code is malformed an error will appear
 app.config["DEBUG"] = True
 
-import json 
-import pandas as pd
-import plotly
-import plotly.graph_objects as go
-import plotly.express as px
-
 #ask for int user input
-@app.route('/user')
-def ask_user():
-    num = input('Enter a value:')
-    print(num)
-
+@app.route('/')
+def hello():
+    return 'hello'
+-----
 #conding the form in the flask file
-@app.route('/form')
-def form():
-    return render_template('form.html')
-
-@app.route('/data/', methods = ['POST','GET'])
-def data():
-    if request.method == 'GET':
-        return f"The URL /data is accessed directly. Try going to 'form' to submit form"
-    if request.method == 'POST':
-        form_data = request.form
-        return render_template('data.html', form_data = form_data)
-
+#@app.route('/form')
+#def form():
+#    return render_template('form.html')
+----
+#@app.route('/data/', methods = ['POST','GET'])
+#def data():
+#    if request.method == 'GET':
+#        return f"The URL /data is accessed directly. Try going to 'form' to submit form"
+#    if request.method == 'POST':
+#        form_data = request.form
+#        return render_template('data.html', form_data = form_data)
+-----
 
 #co2 = pd.read_csv('co2.csv')
 #ps = pd.read_csv('penalty_signals.csv')
@@ -129,10 +127,6 @@ def response():
         
     return response 
     
-
-@app.route('/about', methods=['GET'])
-def about():
-    return "<h1>XX</p>"
 
 
 #method to do the action of run the app/ this runs the app server
